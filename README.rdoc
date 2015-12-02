@@ -1,28 +1,52 @@
-== README
+######MODEL AND DB #######
+Models should be named singular
+Post is not httpd request but name of tmode
+-rails g model Model_Name columnname:data _type author:string body:text
+-rails g model Post title:string author:string body:text
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Create database
+bundle exec uses your gem file. use it
+-bundle exec rake db:create
 
-Things you may want to cover:
+Run Migration
+-bundle exec rake db:migrate
 
-* Ruby version
+bundle exec
+	Exucutes a command in the context of the current app bundle
 
-* System dependencies
+rake
+	helper command
+db:create
+	creates database
+db:migrate
+	runs the migration
+bundle exec rake -T	
+	gives list of rake tasks
 
-* Configuration
+RAILS CONSOLE
+bundle exec rails console
+	>Post.create(title: "te", body: "this blah", author)
 
-* Database creation
+#active record
+Post.all 
+Post.find(id)
+Post.new vs create (create adds it to db new doesn't)	
 
-* Database initialization
+########CONTROLLER
+controllers should be named the same as the model but plural
+rails g controller controller_name controller actions(optinal)
+rails g controller posts index show new	
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+delete routes in routes and add (Will add routes for CRUD)(rake:routes will show routs)
+resources :posts
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+######views
+prefix
+post GET /posts/:id post#show
+<%= link_to 'Show post', post_path(post) %> //knows it is refering to post.id post_path is prefix_path
+<a href= /posts/1'>Show posts</a>
+
+
+
